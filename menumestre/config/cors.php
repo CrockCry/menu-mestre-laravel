@@ -15,20 +15,20 @@ return [
     |
     */
 
-    'paths' => ['api/*', 'sanctum/csrf-cookie'],
+    'paths' => ['api/*', 'sanctum/csrf-cookie'],  // Ajuste se você tem outros caminhos que precisam de CORS
 
-    'allowed_methods' => ['*'],
+    'allowed_methods' => ['*'],  // Permite todos os métodos HTTP
 
-    'allowed_origins' => ['*'],
+    'allowed_origins' => ['http://localhost:8081'],  // Permite requisições somente do frontend
 
     'allowed_origins_patterns' => [],
 
-    'allowed_headers' => ['*'],
+    'allowed_headers' => ['*'],  // Permite todos os cabeçalhos
 
     'exposed_headers' => [],
 
     'max_age' => 0,
 
-    'supports_credentials' => false,
+    'supports_credentials' => true,  // Permite o envio de cookies e credenciais
 
 ];
