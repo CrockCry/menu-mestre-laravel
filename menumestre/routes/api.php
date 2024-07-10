@@ -45,6 +45,7 @@ Route::middleware('auth:sanctum', 'funcionario')->group(function () {
     Route::put('/mesa/{id}/ativar', [MesaController::class, 'ativarMesa']);
     // Rotas para Gerenciamento de Produtos nas Mesas
     Route::post('/mesa/{id}/produtos', [MesaController::class, 'adicionarProduto']); // Adiciona produtos a uma mesa específica
+
     Route::post('/mesa/{id}/remover-produto', [MesaController::class, 'removerProduto']); // Remove um produto específico de uma mesa
     Route::post('/mesa/{id}/fechar', [MesaController::class, 'fecharMesa']); // Fecha uma mesa específica
     //atualizar
