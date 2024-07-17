@@ -270,5 +270,11 @@ class MesaController extends Controller
         return response()->json(['message' => 'Mesa atualizada com sucesso', 'mesa' => $mesa], 200);
     }
 
+    public function mesasDisponiveis()
+{
+    $mesasDisponiveis = Mesa::where('status', 'disponivel')->count();
+    return response()->json(['mesasDisponiveis' => $mesasDisponiveis]);
+}
+
 
 }

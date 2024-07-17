@@ -258,4 +258,22 @@ class FuncionarioController extends Controller
         }
         return response()->json(['message' => 'Credenciais inválidas ou usuário não é um funcionario.'], 401);
     }
+
+    public function relatorioDiario($id)
+{
+    $funcionario = Funcionario::find($id);
+    if (!$funcionario) {
+        return response()->json(['error' => 'Funcionário não encontrado'], 404);
+    }
+
+    $hoje = now()->format('Y-m-d');
+    $relatorio = [
+        'totalFaturado' => $funcionario->comandas()->whereDate('created_at', $hoje)->sum('valorTaxa'),
+        'totalVendido' => $funcionario->comandas()->where('valorTaxa', '>', 0)->whereDate('created_at', $hoje)->sum('total'),
+        'numPedidos' => $funcionario->pedidos()->whereDate('created_at', $hoje)->count(),
+        'numMesasAtendidas' => $funcionario->comandas()->whereDate('created_at', $hoje)->distinct('mesa_id')->count('mesa_id'),
+    ];
+
+    return response()->json($relatorio);
+}
 }

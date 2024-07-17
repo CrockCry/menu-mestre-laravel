@@ -182,4 +182,10 @@ class CardapioController extends Controller
             'data' => $produto
         ]);
     }
+
+    public function itensMenu()
+{
+    $totalItens = Cardapio::count('statusProduto', 'ativo');
+    return response()->json(['totalItens' => $totalItens]);
+}
 }
